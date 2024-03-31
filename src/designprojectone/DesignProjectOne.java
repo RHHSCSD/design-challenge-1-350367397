@@ -109,7 +109,10 @@ public class DesignProjectOne {
                 
                 
         }
-        
+        int vowel=0;
+        Random random=new Random();
+        while(vowel!=97 && vowel !=101 && vowel!=){
+            vowel=random.nextInt(97,123);
                     
         
         
