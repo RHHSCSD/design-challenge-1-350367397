@@ -4,6 +4,7 @@
  */
 package designprojectone;
 import java.util.Scanner;
+import java.util.Random;
 /***************************************************
 *
 *  Program:
@@ -75,13 +76,18 @@ public class DesignProjectOne {
            
                 
         }
+        String k=keyboard.nextLine();
         System.out.println("Please enter the username.");
         String username=keyboard.nextLine();
         System.out.println("Please enter the password.");
         String password=keyboard.nextLine();
-        boolean enter=boolean(username.equals("snoopy")&& password.equals.("toto"));
-        if (enter==false){
-        System.exit(0);
+        username=username.toLowerCase();
+        password=password.toLowerCase();
+        
+        if (username.equals("snoopy")==false || password.equals("toto")==false){
+            System.out.println("Incorrect username or password!.");
+            System.exit(0);
+        
     }
     
         System.out.println("Pick from two options!(enter the option number)");
@@ -103,6 +109,7 @@ public class DesignProjectOne {
                 
                 
         }
+        
                     
         
         
