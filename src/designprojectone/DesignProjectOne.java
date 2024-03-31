@@ -50,8 +50,13 @@ public class DesignProjectOne {
 
   //CODE
         Scanner keyboard=new Scanner(System.in);
-        
-        System.out.println("Welcome to the pet simulator!Please Enter your option(with number)");
+        System.out.println("              ___.                               __   ");
+        System.out.println("  ____ ___.__.\\_ |__   _________________   _____/  |_ ");
+        System.out.println("_/ ___<   |  | | __ \\_/ __ \\_  __ \\____ \\_/ __ \\   __\\");
+        System.out.println("\\  \\___\\___  | | \\_\\ \\  ___/|  | \\/  |_> >  ___/|  |  ");
+        System.out.println(" \\___  > ____| |___  /\\___  >__|  |   __/ \\___  >__|  ");
+        System.out.println("     \\/\\/          \\/     \\/      |__|        \\/      ");
+        System.out.println("Welcome to the Cyberpet!Please Enter your option(with number)");
         System.out.println(" 1.start");
         System.out.println(" 2.instruction");
         System.out.println(" 3.exit");
@@ -70,6 +75,14 @@ public class DesignProjectOne {
            
                 
         }
+        System.out.println("Please enter the username.");
+        String username=keyboard.nextLine();
+        System.out.println("Please enter the password.");
+        String password=keyboard.nextLine();
+        if (((bool)username.equals("snoopy")&&password.equals.toto)==false)){
+        System.exit(0);
+    }
+    }
         System.out.println("Pick from two options!(enter the option number)");
         System.out.println("1)a dog");
         System.out.println("2)a cat");
