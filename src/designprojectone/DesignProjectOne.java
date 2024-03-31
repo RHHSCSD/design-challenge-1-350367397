@@ -79,10 +79,11 @@ public class DesignProjectOne {
         String username=keyboard.nextLine();
         System.out.println("Please enter the password.");
         String password=keyboard.nextLine();
-        if (((bool)username.equals("snoopy")&&password.equals.toto)==false)){
+        boolean enter=boolean(username.equals("snoopy")&& password.equals.("toto"));
+        if (enter==false){
         System.exit(0);
     }
-    }
+    
         System.out.println("Pick from two options!(enter the option number)");
         System.out.println("1)a dog");
         System.out.println("2)a cat");
