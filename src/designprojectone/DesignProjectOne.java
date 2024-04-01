@@ -54,6 +54,7 @@ public class DesignProjectOne {
 
   //CODE
         Scanner keyboard=new Scanner(System.in);
+        Random random=new Random();
         System.out.println("              ___.                               __   ");
         System.out.println("  ____ ___.__.\\_ |__   _________________   _____/  |_ ");
         System.out.println("_/ ___<   |  | | __ \\_/ __ \\_  __ \\____ \\_/ __ \\   __\\");
@@ -80,9 +81,9 @@ public class DesignProjectOne {
                 
         }
         String k=keyboard.nextLine();
-        System.out.println("Please enter the username.");
+        System.out.println("Please enter the username:");
         String username=keyboard.nextLine();
-        System.out.println("Please enter the password.");
+        System.out.println("Please enter the password:");
         String password=keyboard.nextLine();
         username=username.toLowerCase();
         password=password.toLowerCase();
@@ -116,14 +117,16 @@ public class DesignProjectOne {
         System.out.println("option 2:generate a random pet name");
         System.out.println("enter your option by enter the option number:");
         int nameOption=keyboard.nextInt();
+        String placeholder=keyboard.nextLine();
         
         if(nameOption==1){
             System.out.println("Enter the pet's name");
             petName=keyboard.nextLine();
+            
         }
         else if(nameOption==2){
             int vowel=97;
-            Random random=new Random();
+            
             while(vowel==97 || vowel ==101 || vowel==105 || vowel==111 || vowel ==117){
                 vowel=random.nextInt(97,123);}
             char vowelLet=(char)vowel;
@@ -141,11 +144,18 @@ public class DesignProjectOne {
             }
             else{
                 petName=vowelLetter+consonantLetter+consonantLetter+vowelLetter+consonantLetter+consonantLetter;
-            }
-            
-            System.out.println("your pet name is " +petName+"!");
-        
+            }   
         }
+        System.out.println("your pet name is " +petName+"!");
+        int maxHealth=1;
+        int maxFood=1;
+        int maxEnergy=1;
+        int startingPoint=18;
+        maxHealth=maxHealth+random.nextInt(0,startingPoint);
+        startingPoint=startingPoint-maxHealth-1;
+        maxEnergy=maxHealth+random.nextInt(0,startingPoint);
+        maxFood=20-maxEnergy-maxHealth;
+        System.out.println("Your pet's MAXENERGY="+maxEnergy+",MAXFOOD="+maxFood+",MAXHEALTH="+maxHealth);
         
         
         
