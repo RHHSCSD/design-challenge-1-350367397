@@ -116,6 +116,7 @@ public class DesignProjectOne {
         System.out.println("option 2:generate a random pet name");
         System.out.println("enter your option by enter the option number:");
         int nameOption=keyboard.nextInt();
+        
         if(nameOption==1){
             System.out.println("Enter the pet's name");
             petName=keyboard.nextLine();
@@ -124,26 +125,32 @@ public class DesignProjectOne {
             int vowel=97;
             Random random=new Random();
             while(vowel==97 || vowel ==101 || vowel==105 || vowel==111 || vowel ==117){
-            vowel=random.nextInt(97,123);
+                vowel=random.nextInt(97,123);}
             char vowelLet=(char)vowel;
             vowelLetter=String.valueOf(vowelLet);
-            System.out.println(vowelLetter);
+            
             int consonant=98;
             while(consonant!=97 && consonant !=101 && consonant!=105 && consonant!=111 && consonant !=117){
-            vowel=random.nextInt(97,118);
+                consonant=random.nextInt(97,118);
+                
+            }
             char consonantLet=(char)consonant;
             consonantLetter=String.valueOf(consonantLet);
-            if(random.nextInt()%2==0){
+            if(random.nextInt(0,2)%2==0){
                 petName=vowelLetter+consonantLetter+vowelLetter+consonantLetter;
             }
-        System.out.println(petName);
+            else{
+                petName=vowelLetter+consonantLetter+consonantLetter+vowelLetter+consonantLetter+consonantLetter;
+            }
+            
+            System.out.println("your pet name is " +petName+"!");
         
         }
         
         
         
         
-            }
+            
     }
-        }   
+           
 }
