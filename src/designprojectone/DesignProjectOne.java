@@ -5,37 +5,7 @@
 package designprojectone;
 import java.util.Scanner;
 import java.util.Random;
-/***************************************************
-*
-*  Program:
-*  Author:
-*  Date: 
-*  Description:
-****************************************************/
 
-/**************** IPO CHART ************************
-*INPUT:
-*
-*
-*PROCESSING:
-*
-*
-*
-*OUTPUT:
-*
-*
-***************************************************/
-  
-/**************** TEST CASES ************************
-*Test      Input      Desired Ouput
-*
-*
-*
-*
-*
-*
-*
-***************************************************/
 public class DesignProjectOne {
 
     /**
@@ -66,7 +36,7 @@ public class DesignProjectOne {
         int logTries=0;
         String username="";
         String password="";
-        
+        String userChoice="";
         while((username.equals("snoopy")==false || password.equals("toto")==false) && logTries<3){
         System.out.println("Please enter the username:");
         username=keyboard.nextLine();
@@ -92,13 +62,13 @@ public class DesignProjectOne {
         System.out.println(" 1.start");
         System.out.println(" 2.instruction");
         System.out.println(" 3.exit");
-        String userChoice=keyboard.nextLine();
+        userChoice=keyboard.nextLine();
         userChoice=userChoice.toLowerCase();
         if(userChoice.equals("1")||userChoice.equals("start")){
             System.out.println("Welcome!");
-            int confirmation=2;
+            String confirmation="2";
             int petChoice=0;
-            while(confirmation==2){
+            while(confirmation.equals("2")|| confirmation.equals("no") ){
                 System.out.println("Pick from two pet options!(enter the option number)");
                 System.out.println("1)a dog");
                 System.out.println("2)a cat");
@@ -106,7 +76,9 @@ public class DesignProjectOne {
                 System.out.println("do you confirm?(Enter the number)");
                 System.out.println("1)Yes");
                 System.out.println("2)No");
-                confirmation=keyboard.nextInt();}
+                confirmation=keyboard.nextLine();
+                confirmation=confirmation.toLowerCase();
+            }
             switch(petChoice){
                 case 1:
                     System.out.println("  __      _");
@@ -178,6 +150,9 @@ public class DesignProjectOne {
             System.exit(0);
        
         }}
+    while(userChoice.equals("1")||userChoice.equals("play")||userChoice.equals("2")||userChoice.equals("instruction")){
+    
+    }
         
         
         
