@@ -15,7 +15,7 @@ public class DesignProjectOne {
         String petName="";
         String vowelLetter="";
         String consonantLetter="";
-        
+        String placeholder="";
    //Write Pseudocode FIRST as comments and THEN write the code
     
   //CONSTANTS
@@ -76,6 +76,7 @@ public class DesignProjectOne {
                 System.out.println("do you confirm?(Enter the number)");
                 System.out.println("1)Yes");
                 System.out.println("2)No");
+                placeholder=keyboard.nextLine();
                 confirmation=keyboard.nextLine();
                 confirmation=confirmation.toLowerCase();
             }
@@ -97,7 +98,7 @@ public class DesignProjectOne {
             System.out.println("option 2:generate a random pet name");
             System.out.println("enter your option by enter the option number:");
             int nameOption=keyboard.nextInt();
-            String placeholder=keyboard.nextLine();
+            placeholder=keyboard.nextLine();
         
             if(nameOption==1){
                 System.out.println("Enter the pet's name");
@@ -151,6 +152,45 @@ public class DesignProjectOne {
        
         }}
     while(userChoice.equals("1")||userChoice.equals("play")||userChoice.equals("2")||userChoice.equals("instruction")){
+        System.out.println("1.play");
+        System.out.println("2.instruction");
+        System.out.println("3.exit");
+        userChoice=keyboard.nextLine();
+        userChoice=userChoice.toLowerCase();
+        if(userChoice.equals("1")||userChoice.equals("play")){
+            System.out.println("1.number guessing");
+            System.out.println("2.letter guessing");
+            System.out.println("pick your game(in option number):");
+            int gameOption=keyboard.nextInt();
+            if(gameOption==1){
+                System.out.println("Welcome to the number guessing game!Guess the number between 1-100 to earn tokens!");
+                int tokenEarned=50;
+                int answer=random.nextInt(0,101);
+                int playerGuess=0;
+                int triesLeft=10;
+                while(playerGuess!=answer && triesLeft>1){
+                    System.out.println("Enter your guess:");
+                    playerGuess=keyboard.nextInt();
+                    if (playerGuess>answer){
+                        tokenEarned-=5;
+                        triesLeft-=1;      
+                        System.out.println("Your Guess is too big!"+triesLeft+" tried left");}
+                    else if (playerGuess<answer){
+                        tokenEarned-=5;
+                        triesLeft-=1;      
+                        System.out.println("Your Guess is too sma!"+triesLeft+" tried left");}
+                    System.out.println("Game over! You earned "+tokenEarned+" tokens");
+                    }
+                }
+            }
+     //     if(gameOption==2){
+                
+       //   }
+            else{
+                System.out.println("bad input");
+            }
+        }
+        
     
     }
         
@@ -160,6 +200,6 @@ public class DesignProjectOne {
         
         
             
-    }
+    
            
 }
