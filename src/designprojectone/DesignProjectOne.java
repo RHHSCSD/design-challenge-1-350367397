@@ -134,7 +134,7 @@ public class DesignProjectOne {
             int startingPoint=18;
             maxHealth=maxHealth+random.nextInt(0,startingPoint);
             startingPoint=startingPoint-maxHealth-1;
-            maxEnergy=maxHealth+random.nextInt(0,startingPoint);
+            maxEnergy=maxEnergy+random.nextInt(0,startingPoint);
             maxFood=20-maxEnergy-maxHealth;
             System.out.println("Your pet's MAXENERGY="+maxEnergy+",MAXFOOD="+maxFood+",MAXHEALTH="+maxHealth);
             menuChecker=0;
@@ -168,20 +168,25 @@ public class DesignProjectOne {
                 int answer=random.nextInt(0,101);
                 int playerGuess=0;
                 int triesLeft=10;
-                while(playerGuess!=answer && triesLeft>1){
+                while(playerGuess!=answer && triesLeft>0){
                     System.out.println("Enter your guess:");
                     playerGuess=keyboard.nextInt();
                     if (playerGuess>answer){
                         tokenEarned-=5;
                         triesLeft-=1;      
-                        System.out.println("Your Guess is too big!"+triesLeft+" tried left");}
+                        System.out.println("Your Guess is too big!"+triesLeft+" tries left");}
                     else if (playerGuess<answer){
                         tokenEarned-=5;
                         triesLeft-=1;      
-                        System.out.println("Your Guess is too sma!"+triesLeft+" tried left");}
-                    System.out.println("Game over! You earned "+tokenEarned+" tokens");
+                        System.out.println("Your Guess is too small!"+triesLeft+" tries left");}
+                    else{
+                        System.out.println("You got it!");
                     }
+                    
+                
                 }
+                System.out.println("Game over! You earned "+tokenEarned+" tokens");
+                placeholder=keyboard.nextLine();
             }
      //     if(gameOption==2){
                 
@@ -201,5 +206,5 @@ public class DesignProjectOne {
         
             
     
-           
+    }         
 }
