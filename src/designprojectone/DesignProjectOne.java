@@ -133,7 +133,7 @@ public class DesignProjectOne {
             int maxEnergy=1;
             int startingPoint=18;
             maxHealth=maxHealth+random.nextInt(0,startingPoint);
-            startingPoint=startingPoint-maxHealth-1;
+            startingPoint=20-maxHealth-1;
             maxEnergy=maxEnergy+random.nextInt(0,startingPoint);
             maxFood=20-maxEnergy-maxHealth;
             System.out.println("Your pet's MAXENERGY="+maxEnergy+",MAXFOOD="+maxFood+",MAXHEALTH="+maxHealth);
@@ -182,23 +182,63 @@ public class DesignProjectOne {
                     else{
                         System.out.println("You got it!");
                     }
+            
                     
                 
                 }
-                System.out.println("Game over! You earned "+tokenEarned+" tokens");
-                placeholder=keyboard.nextLine();
-            }
-     //     if(gameOption==2){
                 
-       //   }
+                System.out.println("Game over! You earned "+tokenEarned+" tokens");
+                keyboard.nextLine();
+            }
+            else if(gameOption==2){
+                String key="";
+                char generated='p';
+                for(int i=0;i<10;i++){
+                    generated=(char)random.nextInt(97,123);
+                    //System.out.println(generated);
+                    if(key.indexOf(generated)==-1){
+                        for(int j=0;j<2;j++){
+                            int position=random.nextInt(0,key.length()+1);
+                            key=key.substring(0,position)+generated+key.substring(position,key.length());
+                        }  
+                }
+                    else{
+                        i--;
+                    }
+                }
+                keyboard.nextLine();
+                System.out.println(key);
+                String userGuess="xxxxxxxxxxxxxxxxxxxx1";
+                System.out.println(userGuess.length());
+                System.out.println("There are 10 pair of letters! enter 2 indexes to see if they match!");
+                while(userGuess.equals(key)==false){
+                    int guess1=keyboard.nextInt();
+                    int guess2=keyboard.nextInt();
+                    int guessNum=0;
+                    guessNum++;
+                    if(key.charAt(guess1)==key.charAt(guess2)){
+                        System.out.println("Great move! Used Tries:"+guessNum);
+                        userGuess=userGuess.substring(0,Math.min(guess1, guess2))+key.charAt(Math.min(guess1, guess2))+userGuess.substring(Math.min(guess1, guess2)+1,Math.max(guess1, guess2))+key.charAt(Math.max(guess1, guess2))+userGuess.substring(guess2+1,21);
+                        
+                    }
+                    else{
+                        System.out.println("You are wrong!Used Tries:"+guessNum);
+                    }
+                    System.out.println(userGuess.substring(0,20));
+            }
+            System.our.println("I've never thought of someone will actually finish the game,here's ur prize...");
+               // keyboard.nextLine();
+            
+         }
             else{
                 System.out.println("bad input");
             }
         }
+        System.out.println(userChoice);
         
     
     }
-        
+    
         
         
         
