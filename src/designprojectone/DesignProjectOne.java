@@ -8,9 +8,39 @@ import java.util.Random;
 
 public class DesignProjectOne {
 
-    /**
-     * @param args the command line arguments
-     */
+    public static void login(){
+        Scanner keyboard=new Scanner(System.in);
+        
+        //set up variables
+        int logTries=0;
+        String username="";
+        String password="";
+        
+        //use a while loop so it get to repeat even the user failed their first tries
+        while((username.equals("snoopy")==false || password.equals("toto")==false) && logTries<3){
+            
+        //get inputs
+            System.out.println("Please enter the username:");
+            username=keyboard.nextLine();
+            System.out.println("Please enter the password:");
+            password=keyboard.nextLine();
+            
+            //set to lowercase so uppercase wont be a problem
+            username=username.toLowerCase();
+            password=password.toLowerCase();
+            logTries++ ;
+            if (username.equals("snoopy")==false || password.equals("toto")==false){
+                System.out.println("wrong password!");
+                System.out.println("Tries left:"+(3-logTries));
+         }
+         }
+        if (username.equals("snoopy")==false || password.equals("toto")==false){
+            System.out.println("Incorrect username or password! Access denied!");
+            System.exit(0);
+        
+    }
+        System.out.println("Access granted! Welcome, user snoopy");
+    }
     public static void main(String[] args) {
         String petName="";
         String vowelLetter="";
@@ -23,7 +53,9 @@ public class DesignProjectOne {
   //VARIABLES
 
   //CODE
+        //intro page
         Scanner keyboard=new Scanner(System.in);
+        String userChoice="";
         Random random=new Random();
         System.out.println("              ___.                               __   ");
         System.out.println("  ____ ___.__.\\_ |__   _________________   _____/  |_ ");
@@ -33,35 +65,14 @@ public class DesignProjectOne {
         System.out.println("     \\/\\/          \\/     \\/      |__|        \\/      ");
         System.out.println("Welcome to the Cyberpet!");
         
-        int logTries=0;
-        String username="";
-        String password="";
-        String userChoice="";
-        while((username.equals("snoopy")==false || password.equals("toto")==false) && logTries<3){
-        System.out.println("Please enter the username:");
-        username=keyboard.nextLine();
-        System.out.println("Please enter the password:");
-        password=keyboard.nextLine();
-        username=username.toLowerCase();
-        password=password.toLowerCase();
-        logTries++ ;
-        if (username.equals("snoopy")==false || password.equals("toto")==false){
-            System.out.println("wrong password!");
-            System.out.println("Tries left:"+(3-logTries));
-        }
-        }
-        if (username.equals("snoopy")==false || password.equals("toto")==false){
-            System.out.println("Incorrect username or password! Access denied!");
-            System.exit(0);
-        
-    }
-        System.out.println("Access granted! Welcome, user snoopy");
-        
+       
+        login();
         int menuChecker=1;
         while (menuChecker!=0){
         System.out.println(" 1.start");
         System.out.println(" 2.instruction");
         System.out.println(" 3.exit");
+        
         userChoice=keyboard.nextLine();
         userChoice=userChoice.toLowerCase();
         if(userChoice.equals("1")||userChoice.equals("start")){
@@ -226,7 +237,7 @@ public class DesignProjectOne {
                     }
                     System.out.println(userGuess.substring(0,20));
             }
-            System.our.println("I've never thought of someone will actually finish the game,here's ur prize...");
+            System.out.println("I've never thought of someone will actually finish the game,here's ur prize...");
                // keyboard.nextLine();
             
          }
