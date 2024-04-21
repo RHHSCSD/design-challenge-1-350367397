@@ -5,9 +5,11 @@
 package designprojectone;
 import java.util.Scanner;
 import java.util.Random;
-
+import java.lang.Exception;
+import java.io.*;
 public class DesignProjectOne {
-
+    
+        
     public static void login(){
         Scanner keyboard=new Scanner(System.in);
         
@@ -41,42 +43,77 @@ public class DesignProjectOne {
     }
         System.out.println("Access granted! Welcome, user snoopy");
     }
-    public static void main(String[] args) {
-        String petName="";
+    public static String[] login2(){
+        Scanner keyboard=new Scanner(System.in);
+        System.out.println("Enter username:");
+        String username=keyboard.nextLine();
+        File f = new File(username+".txt");
+        if (!f.exists()){
+            try{
+                PrintWriter pw=new PrintWriter(f);
+                System.out.println("Set up your password:");
+                String password=keyboard.nextLine();
+                System.out.println(username);
+                System.out.println(password);
+                pw.println(username);
+                pw.println(password);
+                pw.close();
+                String[] cry={username,"1"};
+                return cry;
+            }
+            catch(IOException e){
+                System.out.println("an error has occured");
+                String[] cry={"3","3"};
+                return cry;
+            }
+            
+        }
+        else{
+            try{
+                int triesUsed=0;
+                Scanner s=new Scanner(f);
+                //s.nextLine();
+                String password=(s.nextLine());
+                for (int i=2;i!=-1;i--){
+                    System.out.println("Enter your password");
+                    String passwordInput=keyboard.nextLine();
+                    if(passwordInput.equals(password)==true){
+                        System.out.println("Access granted!");
+                        String[] cry={username,"2"};
+                        return cry;
+                    }
+                    else{
+                        System.out.println("wrong pass word!"+i+" tries left");
+                        triesUsed++;
+                        
+                    }
+                        if (triesUsed==3){
+                        System.out.println("are you a hacker?");
+                        System.exit(1);
+                        
+                    }
+                }
+                
+                        
+            }
+            catch(IOException e){
+                System.out.println("an error has occured");
+                
+                
+            }
+            String[] cry={"3","3"};
+                return cry;
+        }
+        
+    }
+    public static int[] generate(String username){
+        
         String vowelLetter="";
         String consonantLetter="";
-        String placeholder="";
-   //Write Pseudocode FIRST as comments and THEN write the code
-    
-  //CONSTANTS
-
-  //VARIABLES
-
-  //CODE
-        //intro page
-        Scanner keyboard=new Scanner(System.in);
-        String userChoice="";
+        String petName="";
         Random random=new Random();
-        System.out.println("              ___.                               __   ");
-        System.out.println("  ____ ___.__.\\_ |__   _________________   _____/  |_ ");
-        System.out.println("_/ ___<   |  | | __ \\_/ __ \\_  __ \\____ \\_/ __ \\   __\\");
-        System.out.println("\\  \\___\\___  | | \\_\\ \\  ___/|  | \\/  |_> >  ___/|  |  ");
-        System.out.println(" \\___  > ____| |___  /\\___  >__|  |   __/ \\___  >__|  ");
-        System.out.println("     \\/\\/          \\/     \\/      |__|        \\/      ");
-        System.out.println("Welcome to the Cyberpet!");
-        
-       
-        login();
-        int menuChecker=1;
-        while (menuChecker!=0){
-        System.out.println(" 1.start");
-        System.out.println(" 2.instruction");
-        System.out.println(" 3.exit");
-        
-        userChoice=keyboard.nextLine();
-        userChoice=userChoice.toLowerCase();
-        if(userChoice.equals("1")||userChoice.equals("start")){
-            System.out.println("Welcome!");
+        Scanner keyboard=new Scanner(System.in);
+        System.out.println("Welcome!");
             String confirmation="2";
             int petChoice=0;
             while(confirmation.equals("2")|| confirmation.equals("no") ){
@@ -87,7 +124,7 @@ public class DesignProjectOne {
                 System.out.println("do you confirm?(Enter the number)");
                 System.out.println("1)Yes");
                 System.out.println("2)No");
-                placeholder=keyboard.nextLine();
+                keyboard.nextLine();
                 confirmation=keyboard.nextLine();
                 confirmation=confirmation.toLowerCase();
             }
@@ -109,7 +146,7 @@ public class DesignProjectOne {
             System.out.println("option 2:generate a random pet name");
             System.out.println("enter your option by enter the option number:");
             int nameOption=keyboard.nextInt();
-            placeholder=keyboard.nextLine();
+            keyboard.nextLine();
         
             if(nameOption==1){
                 System.out.println("Enter the pet's name");
@@ -139,6 +176,16 @@ public class DesignProjectOne {
             }   
         }
             System.out.println("your pet, " +petName+" has spawned!");
+            try{
+                final boolean Append=true;
+                FileWriter glossary=new FileWriter(username+"txt");
+                PrintWriter output=new PrintWriter(glossary);
+                output.println(petName);
+                output.close();
+            }
+            catch(IOException e){
+                System.out.println("an error has occured");
+            }
             int maxHealth=1;
             int maxFood=1;
             int maxEnergy=1;
@@ -148,33 +195,13 @@ public class DesignProjectOne {
             maxEnergy=maxEnergy+random.nextInt(0,startingPoint);
             maxFood=20-maxEnergy-maxHealth;
             System.out.println("Your pet's MAXENERGY="+maxEnergy+",MAXFOOD="+maxFood+",MAXHEALTH="+maxHealth);
-            menuChecker=0;
-            
-        }
-        else if(userChoice.equals("2")||userChoice.equals("instruction")){
-            System.out.println("This is a pet simulator!,pick a cyber pet and play aroung with it!");
-        }
-        else if(userChoice.equals("3")||userChoice.equals("exit")){
-            System.out.println("Goodbye!");
-            System.exit(0);}
-        else{
-            System.out.println("Unknown operation, shutting down...");
-            System.exit(0);
-       
-        }}
-    while(userChoice.equals("1")||userChoice.equals("play")||userChoice.equals("2")||userChoice.equals("instruction")){
-        System.out.println("1.play");
-        System.out.println("2.instruction");
-        System.out.println("3.exit");
-        userChoice=keyboard.nextLine();
-        userChoice=userChoice.toLowerCase();
-        if(userChoice.equals("1")||userChoice.equals("play")){
-            System.out.println("1.number guessing");
-            System.out.println("2.letter guessing");
-            System.out.println("pick your game(in option number):");
-            int gameOption=keyboard.nextInt();
-            if(gameOption==1){
-                System.out.println("Welcome to the number guessing game!Guess the number between 1-100 to earn tokens!");
+            int[] cry={maxEnergy,maxFood,maxHealth,maxEnergy,maxFood,maxHealth};
+            return cry;
+    }
+    public static int numberGuess(){
+        Scanner keyboard=new Scanner(System.in);
+        Random random=new Random();
+        System.out.println("Welcome to the number guessing game!Guess the number between 1-100 to earn tokens!");
                 int tokenEarned=50;
                 int answer=random.nextInt(0,101);
                 int playerGuess=0;
@@ -192,17 +219,14 @@ public class DesignProjectOne {
                         System.out.println("Your Guess is too small!"+triesLeft+" tries left");}
                     else{
                         System.out.println("You got it!");
-                    }
-            
-                    
-                
-                }
-                
+                    }}
                 System.out.println("Game over! You earned "+tokenEarned+" tokens");
-                keyboard.nextLine();
-            }
-            else if(gameOption==2){
-                String key="";
+        return tokenEarned;
+    }
+    public static int letterGuess(){
+        Scanner keyboard=new Scanner(System.in);
+        Random random=new Random();
+        String key="";
                 char generated='p';
                 for(int i=0;i<10;i++){
                     generated=(char)random.nextInt(97,123);
@@ -220,7 +244,7 @@ public class DesignProjectOne {
                 keyboard.nextLine();
                 System.out.println(key);
                 String userGuess="xxxxxxxxxxxxxxxxxxxx1";
-                System.out.println(userGuess.length());
+                
                 System.out.println("There are 10 pair of letters! enter 2 indexes to see if they match!");
                 while(userGuess.equals(key)==false){
                     int guess1=keyboard.nextInt();
@@ -238,6 +262,101 @@ public class DesignProjectOne {
                     System.out.println(userGuess.substring(0,20));
             }
             System.out.println("I've never thought of someone will actually finish the game,here's ur prize...");
+            return 50;
+    }
+    public static int[] interact(int[] input,int token){
+        System.out.println("Spend money to help your pet recover!");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        
+    }
+    public static void main(String[] args) {
+        
+        String placeholder="";
+   //Write Pseudocode FIRST as comments and THEN write the code
+    
+  //CONSTANTS
+
+  //VARIABLES
+
+  //CODE
+        //intro page
+        Scanner keyboard=new Scanner(System.in);
+        String userChoice="";
+        Random random=new Random();
+        System.out.println("              ___.                               __   ");
+        System.out.println("  ____ ___.__.\\_ |__   _________________   _____/  |_ ");
+        System.out.println("_/ ___<   |  | | __ \\_/ __ \\_  __ \\____ \\_/ __ \\   __\\");
+        System.out.println("\\  \\___\\___  | | \\_\\ \\  ___/|  | \\/  |_> >  ___/|  |  ");
+        System.out.println(" \\___  > ____| |___  /\\___  >__|  |   __/ \\___  >__|  ");
+        System.out.println("     \\/\\/          \\/     \\/      |__|        \\/      ");
+        System.out.println("Welcome to the Cyberpet!");
+        String[] loginResult=login2();
+        String username=loginResult[1];
+        if(loginResult[2].equals("3")==true){
+            System.exit(1);
+        }
+        if(loginResult[2].equals("1")==true){
+            int menuChecker=1;
+        while (menuChecker!=0){
+        System.out.println(" 1.start");
+        System.out.println(" 2.instruction");
+        System.out.println(" 3.exit");
+        
+        
+        userChoice=keyboard.nextLine();
+        userChoice=userChoice.toLowerCase();
+        if(userChoice.equals("1")||userChoice.equals("start")){
+            int[] petStats=generate(username);
+            menuChecker=0;
+
+            
+        }
+        else if(userChoice.equals("2")||userChoice.equals("instruction")){
+            System.out.println("This is a pet simulator!,pick a cyber pet and play around with it!");
+        }
+        else if(userChoice.equals("3")||userChoice.equals("exit")){
+            System.out.println("Goodbye!");
+            System.exit(0);}
+        
+        else{
+            System.out.println("Unknown operation, shutting down...");
+            System.exit(0);
+        }}
+        }
+        else{
+            userChoice="1";
+        }
+        
+        
+        
+    while(userChoice.equals("1")||userChoice.equals("play")||userChoice.equals("2")||userChoice.equals("instruction")){
+        int token=0;
+        System.out.println("1.play");
+        System.out.println("2.instruction");
+        System.out.println("3.exit");
+        System.out.println("4.interact");
+        System.out.println("You have "+token+" tokens in ur account!");
+        userChoice=keyboard.nextLine();
+        userChoice=userChoice.toLowerCase();
+        if(userChoice.equals("1")||userChoice.equals("play")){
+            System.out.println("1.number guessing");
+            System.out.println("2.letter guessing");
+            System.out.println("pick your game(in option number):");
+            int gameOption=keyboard.nextInt();
+            if(gameOption==1){
+                
+                token=token+numberGuess();
+                //keyboard.nextLine();
+                }
+                
+                
+                
+            
+            else if(gameOption==2){
+                token=token+numberGuess();
                // keyboard.nextLine();
             
          }
@@ -245,7 +364,18 @@ public class DesignProjectOne {
                 System.out.println("bad input");
             }
         }
+        else if(userChoice.equals("2")||userChoice.equals("instruction")){
+            System.out.println("This is a pet simulator!,pick a cyber pet and play around with it!");
+        }
+        else if(userChoice.equals("3")||userChoice.equals("exit")){
+            System.out.println("Goodbye!");
+            System.exit(0);}
+        else if(userChoice.equals("4")||userChoice.equals("interact")){
+            interact(petStats[],token);
+        }
         System.out.println(userChoice);
+        System.out.println("You now have "+token+" tokens in ur account!");
+        keyboard.nextLine();
         
     
     }
