@@ -176,16 +176,6 @@ public class DesignProjectOne {
             }   
         }
             System.out.println("your pet, " +petName+" has spawned!");
-            try{
-                final boolean Append=true;
-                FileWriter glossary=new FileWriter(username+"txt");
-                PrintWriter output=new PrintWriter(glossary);
-                output.println(petName);
-                output.close();
-            }
-            catch(IOException e){
-                System.out.println("an error has occured");
-            }
             int maxHealth=1;
             int maxFood=1;
             int maxEnergy=1;
@@ -196,6 +186,20 @@ public class DesignProjectOne {
             maxFood=20-maxEnergy-maxHealth;
             System.out.println("Your pet's MAXENERGY="+maxEnergy+",MAXFOOD="+maxFood+",MAXHEALTH="+maxHealth);
             int[] cry={maxEnergy,maxFood,maxHealth,maxEnergy,maxFood,maxHealth};
+            
+            try{
+                final boolean Append=true;
+                FileWriter glossary=new FileWriter(username+"txt");
+                PrintWriter output=new PrintWriter(glossary);
+                output.println(petName);
+                for(int d=0;d<6;d++){
+                    output.println(cry[d]);
+                }
+                output.close();
+            }
+            catch(IOException e){
+                System.out.println("an error has occured");
+            }
             return cry;
     }
     public static int numberGuess(){
@@ -266,11 +270,42 @@ public class DesignProjectOne {
     }
     public static int[] interact(int[] input,int token){
         System.out.println("Spend money to help your pet recover!");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
+        System.out.println("1)Playing with your pet");
+        System.out.println("2)Feeding your pet");
+        System.out.println("3)Grooming your pet");
+        System.out.println("Each action costs $20 each, enter the option number");
+        Scanner keyboard=new Scanner(System.in);
+        int interactOption=keyboard.nextInt();
+        if(token>=20){
+            if(interactOption==1){
+                System.out.println("your pet's energy has restored!");
+                System.out.println("Current energy:"+input[0]+"Current Food:"+input[4]+"Current Health:"+input[5]);
+                token=token-20;
+                int[] cry={input[0],input[1],input[2],input[0],input[4],input[5],token};
+                
+                return cry;}
+            else if(interactOption==2){
+                System.out.println("your pet's Food has restored!");
+                System.out.println("Current energy:"+input[3]+"Current Food:"+input[1]+"Current Health:"+input[5]);
+                token=token-20;
+                int[] cry={input[0],input[1],input[2],input[3],input[1],input[5],token};
+                return cry;}
+            else if(interactOption==3){
+                System.out.println("your pet's Health has restored!");
+                System.out.println("Current energy:"+input[3]+"Current Food:"+input[4]+"Current Health:"+input[2]);
+                token=token-20;
+                int[] cry={input[0],input[1],input[2],input[3],input[4],input[2],token};
+                return cry;
+            }
+                
+        }
+        else{
+           System.out.println("You don't have enough tokens!");
+           int[] cry={input[0],input[1],input[2],input[3],input[4],input[5],token};
+           return cry;
+        }
         
+    
     }
     public static void main(String[] args) {
         
@@ -286,6 +321,8 @@ public class DesignProjectOne {
         Scanner keyboard=new Scanner(System.in);
         String userChoice="";
         Random random=new Random();
+        int petStats[]=new int[7];
+        int token=0;
         System.out.println("              ___.                               __   ");
         System.out.println("  ____ ___.__.\\_ |__   _________________   _____/  |_ ");
         System.out.println("_/ ___<   |  | | __ \\_/ __ \\_  __ \\____ \\_/ __ \\   __\\");
@@ -307,9 +344,10 @@ public class DesignProjectOne {
         
         
         userChoice=keyboard.nextLine();
+        
         userChoice=userChoice.toLowerCase();
         if(userChoice.equals("1")||userChoice.equals("start")){
-            int[] petStats=generate(username);
+            petStats=generate(username);
             menuChecker=0;
 
             
@@ -328,12 +366,20 @@ public class DesignProjectOne {
         }
         else{
             userChoice="1";
+            File file=new File(username+".txt");
+            try{
+                Scanner tokenCheck=new Scanner(file);
+            }
+            catch(Exception e){
+                System.out.println("an error ");
+            }
+            
         }
         
         
         
     while(userChoice.equals("1")||userChoice.equals("play")||userChoice.equals("2")||userChoice.equals("instruction")){
-        int token=0;
+        
         System.out.println("1.play");
         System.out.println("2.instruction");
         System.out.println("3.exit");
@@ -371,7 +417,7 @@ public class DesignProjectOne {
             System.out.println("Goodbye!");
             System.exit(0);}
         else if(userChoice.equals("4")||userChoice.equals("interact")){
-            interact(petStats[],token);
+            petStats=interact(petStats,token);
         }
         System.out.println(userChoice);
         System.out.println("You now have "+token+" tokens in ur account!");
