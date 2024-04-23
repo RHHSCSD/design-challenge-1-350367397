@@ -192,6 +192,18 @@ public class DesignProjectOne {
                 FileWriter glossary=new FileWriter(username+"txt");
                 PrintWriter output=new PrintWriter(glossary);
                 output.println(petName);
+                if (petChoice==1){
+                    output.println("dog");
+                    output.println("  __      _");
+                    output.println("o'')}____//");
+                    output.println("`_/      )");
+                    output.println(" (_(_/-(_/");
+                }
+                else{
+                    output.println("    |\\__/,|   (`\\");
+                    output.println("  _.|o o  |_   ) )");
+                    output.println("-(((---(((--------");
+                }
                 for(int d=0;d<6;d++){
                     output.println(cry[d]);
                 }
@@ -298,7 +310,7 @@ public class DesignProjectOne {
                 return cry;
             }
                 
-        }
+        
         else{
            System.out.println("You don't have enough tokens!");
            int[] cry={input[0],input[1],input[2],input[3],input[4],input[5],token};
@@ -306,6 +318,9 @@ public class DesignProjectOne {
         }
         
     
+    }
+        int[] cry={input[0],input[1],input[2],input[3],input[4],input[2],token};
+                return cry;
     }
     public static void main(String[] args) {
         
@@ -369,9 +384,12 @@ public class DesignProjectOne {
             File file=new File(username+".txt");
             try{
                 Scanner tokenCheck=new Scanner(file);
+                petStats[0]=tokenCheck.nextInt();
+                petStats[1]=tokenCheck.nextInt();
+                petStats[2]=tokenCheck.nextInt();
             }
             catch(Exception e){
-                System.out.println("an error ");
+                System.out.println("an error has occured");
             }
             
         }
@@ -415,6 +433,19 @@ public class DesignProjectOne {
         }
         else if(userChoice.equals("3")||userChoice.equals("exit")){
             System.out.println("Goodbye!");
+            try{
+                final boolean Append=true;
+                FileWriter glossary=new FileWriter(username+"txt");
+                PrintWriter output=new PrintWriter(glossary);
+                for(int d=3;d<7;d++){
+                    output.println(petStats[d]);
+                }
+                output.close();
+            }
+            catch(IOException e){
+                System.out.println("an error has occured");
+            }
+           
             System.exit(0);}
         else if(userChoice.equals("4")||userChoice.equals("interact")){
             petStats=interact(petStats,token);
